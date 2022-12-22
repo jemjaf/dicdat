@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/edelec",
+    "public": "src",
     "ignore": [
       "firebase.json",
       "**/.*",
