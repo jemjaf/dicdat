@@ -1,0 +1,33 @@
+.col-md-3[type="references"]{
+  font-size: 12px;
+  text-align: right;
+}
+
+a{
+  color: black ;
+}
+
+.col-md-3[type="logo"]{
+  text-align: left;
+}
+
+
+p{
+  margin:-8% 0;
+}
+
+img{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-md-1{
+  link: "gooogle.com";
+}
+.col-md-3{
+}
+.example-spacer {
+  flex: 1 1 auto;
+}

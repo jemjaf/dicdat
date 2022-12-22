@@ -1,0 +1,196 @@
+<div class="container cont-dicdat">
+  <div class="row ">
+    <div class="col-md-12 ">
+          <img class="img-fluid" alt="Responsive image" src="../../../../assets/img/Logo_DicDat.png">
+    </div>
+  </div>
+</div>
+
+
+<mat-divider style="margin-bottom: 20px"></mat-divider>
+<div class="row">
+  <div class="col-md-offset-3 mx-auto">
+    <div class="row">
+      <div class="col-md-9">
+        <form
+          autocomplete="off"
+          [formGroup]="form"
+          #frmLibro="ngForm"
+        >
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label>Palabra</mat-label>
+            <input
+              matInput
+              type="text"
+              (keydown)="agregarDatos($event)"
+              placeholder="Palabra"
+              formControlName="palabra"
+            />
+            <mat-error *ngIf="form.controls.palabra.hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="col-md-3">
+        <button
+          name = "agnadir"
+          mat-raised-button
+          color="primary"
+          (click)="addData()"
+          type="submit"
+          class="ms-2"
+          [disabled]="frmLibro.invalid"
+        >
+          Añadir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Agregar palabra de inicio (opcional)
+            </mat-panel-title>
+            <mat-panel-description>
+              {{panelOpenState ? 'Ejemplo: '+palabraInicio+' + ncombinación' : ''}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="row">
+
+            <form class="example-form">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Palabra de inicio</mat-label>
+                <input
+                  matInput
+                  #message maxlength="256"
+                  placeholder="Ex. I need help with..."
+                  [ngModelOptions]="{standalone:true}"
+                  [(ngModel)]="palabraInicio"
+
+
+                >
+                <mat-hint align="start"><strong>Asegurate de no sobrepasar el límite</strong> </mat-hint>
+                <mat-hint align="end">{{message.value.length}} / 50</mat-hint>
+              </mat-form-field>
+            </form>
+
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Número de combinaciones: </h3>
+    </div>
+    <div class="col-md-6">
+      <mat-slider
+        style="width: 100%;   margin-top: 15px;"
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        color="warn"
+        step="1"
+        min="1"
+        [(ngModel)]="tamCombinaciones"
+        [value]="getActual()"
+        [max]="getMaximo()"
+        aria-label="units">
+      </mat-slider>
+    </div>
+    <div class="col-md-3 ">
+      <button
+        type="eliminar"
+        mat-raised-button
+
+        [disabled]="!dataSource.length"
+        (click)="removeData()"
+        class="demo-button">
+        Eliminar el último
+      </button>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Combinaciones mínimas: </h3>
+    </div>
+    <div class="col-md-6">
+      <mat-slider
+        style="width: 100%;   margin-top: 15px;"
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        color="warn"
+        step="1"
+        min="1"
+        [(ngModel)]="minCombinaciones"
+        [max]="getActual()"
+        aria-label="units">
+      </mat-slider>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+<mat-divider></mat-divider>
+
+<div class="container">
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+      <!-- Position Column -->
+      <ng-container  matColumnDef="posicion">
+        <th style="width: 10%" mat-header-cell *matHeaderCellDef>N°</th>
+        <td mat-cell *matCellDef="let element">{{element.posicion}}</td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="palabra">
+        <th mat-header-cell *matHeaderCellDef>Palabra</th>
+        <td mat-cell *matCellDef="let element">{{element.palabra}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  <button
+    type="generar"
+    color="primary"
+    mat-raised-button
+    [disabled]="!dataSource.length"
+    (click)="descargar()"
+    class="demo-button">
+    Generar archivo
+  </button>
+</div>
+
+

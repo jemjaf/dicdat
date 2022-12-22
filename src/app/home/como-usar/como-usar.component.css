@@ -1,0 +1,11 @@
+.img-responsive{
+  width: 50%;
+  display:flex;
+  margin:auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.col-center{
+  float: none;
+  margin: 0 auto;
+}
