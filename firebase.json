@@ -1,8 +1,9 @@
 {
   "hosting": {
-    "public": "src",
+    "public": "dist/dicdat",
     "ignore": [
       "firebase.json",
+      "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
