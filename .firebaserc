@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "dicdat-9e418"
-  }
+    "default": "dicdat-9e418",
+    "dicdat": "dicdat-a9548"
+  },
+  "targets": {},
+  "etags": {}
 }
